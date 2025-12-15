@@ -1,0 +1,50 @@
+polymarket:
+  base_url: "https://polymarket.com"
+
+leaders:
+  wallets:
+    - "0xLEADER_WALLET_1"
+    - "0xLEADER_WALLET_2"
+
+copy_mode:
+  mode: "proportional"          # proportional | fixed
+  fixed_amount: 5.0             # used if mode=fixed
+  leader_unit: 100.0            # used if mode=proportional (leader bankroll reference)
+  follower_unit: 25.0           # used if mode=proportional (your bankroll reference)
+
+risk:
+  max_slippage: 0.02
+  max_spread: 0.05
+  min_liquidity: 100.0
+  mirror_exits: true
+  exposure_limits:
+    per_market: 50.0
+    per_category: 150.0
+
+# Optional mapping to enforce category caps without scraping categories from UI.
+market_categories:
+  demo-market-123: "politics"
+
+browser:
+  headless: true
+  storage_state_path: "output/storage_state.json"
+
+proxies:
+  mode: "none"                  # none | random | sticky
+  pool:
+    # - server: "http://127.0.0.1:8080"
+    #   username: ""
+    #   password: ""
+
+runtime:
+  poll_interval_seconds: 3
+  max_backoff_seconds: 60
+  max_seen_events: 5000
+  circuit_breaker_failures: 8
+  circuit_breaker_pause_seconds: 60
+
+  # Turn on to test the full pipeline without real Polymarket parsing/execution.
+  demo_mode: true
+
+  # If true, the bot will refuse to trade until you implement real market checks.
+  strict_market_checks: false
